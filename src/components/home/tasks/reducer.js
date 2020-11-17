@@ -26,6 +26,11 @@ const addTask = (state, action) => (
   }])
 );
 
+/**
+ * deleteTask
+ * @param { Object } state 
+ * @param { object } action 
+ */
 const deleteTask = (state, action) => (
   state.filter((supp) => {
     if (supp.id === action.value) {
@@ -34,6 +39,12 @@ const deleteTask = (state, action) => (
     return true;
   })
 );
+
+/**
+ * checkTask
+ * @param { Object } state 
+ * @param { object } action 
+ */
 const checkTask = (state, action) => (
   state.map((todo) => {
     if (todo.id === action.value) {
