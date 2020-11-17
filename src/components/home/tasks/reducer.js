@@ -26,7 +26,14 @@ const addTask = (state, action) => (
   }])
 );
 
-const deleteTask = (state) => (state);
+const deleteTask = (state, action) => (
+  state.filter((supp) => {
+    if (supp.id === action.value) {
+      return false;
+    }
+    return true;
+  })
+);
 const checkTask = (state, action) => (
   state.map((todo) => {
     if (todo.id === action.value) {
@@ -45,7 +52,7 @@ const tasks = (state = initalState, action) => {
     case actionsType.ADD_TASK:
       return addTask(state, action);
     case actionsType.DELETE_TASK:
-      return deleteTask(state);
+      return deleteTask(state, action);
     case actionsType.CHECK_TASK:
       return checkTask(state, action);
     default:
