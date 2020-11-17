@@ -10,9 +10,7 @@ import {
 const Task = ({ checked, label }) => (
   <Grid container item xs={12}>
     <FormControlLabel
-      control={
-        <Checkbox checked={checked} />
-      }
+      control={<Checkbox checked={checked} />}
       label={label}
     />
     <Button color="secondary">Delete</Button>

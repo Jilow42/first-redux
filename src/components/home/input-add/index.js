@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Grid,
   TextField,
@@ -7,6 +8,7 @@ import {
 
 import store from '../../../store';
 import { addTask } from '../tasks/actions';
+import { updateValue } from './actions';
 
 class InputAdd extends React.Component {
   constructor() {
@@ -23,6 +25,8 @@ class InputAdd extends React.Component {
     this.setState({
       value: e.target.value
     });
+
+    store.dispatch(updateValue(e.target.value));
   }
 
   onClick() {
@@ -47,4 +51,8 @@ class InputAdd extends React.Component {
   }
 }
 
-export default InputAdd;
+const mapToProps = (state) => ({
+  value: state.value
+});
+
+export default connect(mapToProps)(InputAdd);
