@@ -4,11 +4,13 @@ const initalState = [{
   id: '1',
   label: 'Dormir',
   checked: false
-}, {
-  id: '1',
+},
+{
+  id: '2',
   label: 'Manger',
   checked: false
-}];
+}
+];
 
 /**
  * Add task
@@ -25,7 +27,18 @@ const addTask = (state, action) => (
 );
 
 const deleteTask = (state) => (state);
-const checkTask = (state) => (state);
+const checkTask = (state, action) => (
+  state.map((todo) => {
+    if (todo.id === action.value) {
+      return {
+        id: todo.id,
+        label: todo.label,
+        checked: !todo.checked
+      };
+    }
+    return todo;
+  })
+);
 
 const tasks = (state = initalState, action) => {
   switch (action.type) {
@@ -34,7 +47,7 @@ const tasks = (state = initalState, action) => {
     case actionsType.DELETE_TASK:
       return deleteTask(state);
     case actionsType.CHECK_TASK:
-      return checkTask(state);
+      return checkTask(state, action);
     default:
       return state;
   }
