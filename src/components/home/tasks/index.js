@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Grid,
   FormControlLabel,
@@ -18,10 +19,14 @@ const Task = ({ checked, label }) => (
   </Grid>
 );
 
-const Tasks = () => (
+const Tasks = ({ tasks }) => (
   <Grid container item xs={12}>
-    <Task checked={false} label="Dormir" />
+    {tasks.map((task) => (<Task checked={task.checked} label={task.label} />))}
   </Grid>
 );
 
-export default Tasks;
+const mapToProps = (state) => ({
+  tasks: state.tasks
+});
+
+export default connect(mapToProps)(Tasks);
